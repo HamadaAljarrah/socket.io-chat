@@ -3,7 +3,6 @@ import axios from "axios"
 import { socket } from '../../scoket'
 
 
-
 const filterTableUsers = (data)=>{
     const d = data
     d.forEach((el, index) => {
@@ -41,7 +40,7 @@ export const HandleUpdate = ()=>{
         })
         socket.on("deleteVisitor", data=>setVisitors(data))
     };
-    useEffect(()=>{getVisitor()},[])
+    useEffect(()=>{getVisitor();},[])
     return {visitors}
 }
 
