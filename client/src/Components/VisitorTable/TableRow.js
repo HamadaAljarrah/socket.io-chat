@@ -6,7 +6,7 @@ export default function TableRow({index,ip,country,flag,region,city}) {
     <tr key={index}>
         <td >{index}</td>
         <td>{ip}</td>
-        <td><img className={classes.flag} src={flag}/></td>
+        <td><img alt={country} className={classes.flag} src={flag}/></td>
         <td>{country}</td>
         <td>{region}</td>
         <td>{city}</td>

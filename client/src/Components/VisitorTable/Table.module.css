@@ -44,15 +44,3 @@ table thead td:nth-child(1), table thead th:nth-child(1){
     margin-left: 10px ;
 }
 
-@media screen and (max-width: 500px) {
-    .container{
-        padding: 10px;   
-    }
-    th, td{
-        padding: 4px;
-        font-size: 10px;
-    }
-    .flag{
-        width: 20px;
-    }    
-}

@@ -4,11 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Nav from './Components/Nav/Nav';
 import OnlineUsers from './Pages/OnlineUsers/OnlineUsers';
-import Rooms from './Pages/Rooms/Rooms';
+import RoomsPage from './Pages/Rooms/RoomsPage';
 import PublicChat from './Pages/PublicChat/PublicChat';
 
-
 export default function App() {
+
 
   return (
     <BrowserRouter>
@@ -16,7 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" exact={true} element={<PublicChat/>}/>
         <Route path="onlineUsers" element={<OnlineUsers/>}/>
-        <Route path="rooms" element={<Rooms/>}/>
+        <Route path="rooms" element={<RoomsPage/>}/>
       </Routes>
     </BrowserRouter>
   )

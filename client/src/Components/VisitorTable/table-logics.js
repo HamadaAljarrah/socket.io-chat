@@ -17,11 +17,8 @@ const filterTableUsers = (data)=>{
     return d;
 }
 
-
-
 export const HandleUpdate = ()=>{
     const [visitors, setVisitors] = useState([]);
-
     const getVisitor = async () => {
         const { data } = await axios("https://ipapi.co/json/");
         const visitor = {
@@ -31,7 +28,6 @@ export const HandleUpdate = ()=>{
             flag: `https://countryflagsapi.com/png/${data.country_code}`,
             country: data.country_name, 
         }
-
         socket.emit("newVisitor", visitor);
         socket.on("newVisitor", (data)=>{
             const user = filterTableUsers(data);
@@ -43,4 +39,5 @@ export const HandleUpdate = ()=>{
     useEffect(()=>{getVisitor();},[])
     return {visitors}
 }
+
 

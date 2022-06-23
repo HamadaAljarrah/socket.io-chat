@@ -1,10 +1,11 @@
 import React from 'react'
 import Container from '../../Components/Container/Container'
+import Rooms from '../../Components/Rooms/Rooms'
 
-export default function Rooms() {
+export default function RoomsPage() {
   return (
     <Container>
-      <h1>Rooms</h1>
+      <Rooms/>
     </Container>
   )
 }

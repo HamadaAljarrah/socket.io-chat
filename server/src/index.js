@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-const { emit } = require("process");
 const socketIO = require("socket.io");
 
 const app = express();
@@ -12,7 +11,7 @@ const io = socketIO(server, {
 })
 
 const {getVisitors, deleteVisitor} = require("./visitors")
-// const { handleJoinRoom } = require("./chatRooms")
+const { getActiveRooms} = require("./chatRooms")
 
 app.get("/", (req, res)=>{
     res.sendFile(__dirname + '/index.html');
@@ -31,12 +30,14 @@ io.on("connection", (socket)=>{
     //handle rooms
     socket.on("joinRoom", room =>{
         socket.join(room);
-        console.log(`user with id ${socket.id} has joined room ${room}`)
+        console.log(`user with id ${socket.id} has joined room ${room}`);
+        const rooms = getActiveRooms(io.sockets.adapter.rooms);
+        
     });
 
     socket.on("message", ({room , message}) =>{
         socket.to(room).emit("message", message);
-        console.log(`user with id ${socket.id} has sended message ${message} to room ${room}`)
+        console.log(`user with id ${socket.id} has sended message ${message} to room ${room}`);
     });
 
     socket.on("typing",({room})=>{

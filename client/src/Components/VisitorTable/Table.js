@@ -1,11 +1,8 @@
 import React from 'react'
 import classes from "./Table.module.css"
 import TableRow from './TableRow'
-import { HandleUpdate } from './table-logics'
 
-export default function Table() {
-
-    let {visitors} = HandleUpdate()
+export default function Table({visitors}) {
     return (
         <>
             <h1>Online Users<div className={classes.greenDot}></div></h1>
