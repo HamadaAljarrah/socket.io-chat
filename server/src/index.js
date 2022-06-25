@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
+const cors = require("cors");
 
 const app = express();
 const server = http.createServer(app);
@@ -9,14 +10,17 @@ const io = socketIO(server, {
         origin: "*"
     }
 })
-
+app.use(cors())
 const {getVisitors, deleteVisitor} = require("./visitors")
-const { getActiveRooms} = require("./chatRooms")
+const { staticRooms, getActiveRooms} = require("./chatRooms")
 
 app.get("/", (req, res)=>{
     res.sendFile(__dirname + '/index.html');
 })
 
+app.get("/rooms", (req, res)=>{
+    res.json(staticRooms)
+})
 
 
 
@@ -31,8 +35,8 @@ io.on("connection", (socket)=>{
     socket.on("joinRoom", room =>{
         socket.join(room);
         console.log(`user with id ${socket.id} has joined room ${room}`);
-        const rooms = getActiveRooms(io.sockets.adapter.rooms);
-        
+        //getRoomsToSend(io.sockets.adapter.rooms);
+     
     });
 
     socket.on("message", ({room , message}) =>{

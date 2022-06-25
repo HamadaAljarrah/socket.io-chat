@@ -5,7 +5,6 @@ import { useVisitors } from '../../Context/visitor-context'
 
 export default function OnlineUsers() {
   const {visitors} = useVisitors();
-  console.log(visitors);
   return (
     <Container>
         <Table visitors = {visitors}/>

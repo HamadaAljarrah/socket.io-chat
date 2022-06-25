@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Exo', sans-serif;
-    
+    position: relative;
+
     --mobile: 500px;
     --tablet: 768px;
     --laptop: 991px;

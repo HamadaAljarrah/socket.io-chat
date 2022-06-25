@@ -32,7 +32,6 @@ export const HandleUpdate = ()=>{
         socket.on("newVisitor", (data)=>{
             const user = filterTableUsers(data);
             setVisitors(user);
-            console.log(user);
         })
         socket.on("deleteVisitor", data=>setVisitors(data))
     };

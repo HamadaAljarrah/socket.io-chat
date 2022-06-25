@@ -1,27 +1,23 @@
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import Room from './Room'
 import classes from "./Rooms.module.css"
-
-
-const ROOMS = [
-    {
-        name: "React",
-        path: "/rooms/react-1"
-    },
-    {
-        name: "Java",
-        path: "/rooms/java-1"
-    },
-    {
-        name: "C++",
-        path: "/rooms/c++-1"
-    }
-]
+import { SERVER_URL } from '../../scoket'
+import axios from 'axios'
 
 export default function Rooms() {
+    const [rooms, setRooms] = useState([]);
+    useEffect (()=>{
+        const loadData = ()=>{
+            axios.get(`${SERVER_URL}/rooms`)
+            .then(({data})=> setRooms(data))
+            .catch(error=> console.log(error))
+        }
+        loadData();
+    },[]);
+
   return (
       <div className={classes.container}> 
-        {ROOMS.map(r=> <Room name={r.name} path={r.path}/>)}
+        {rooms.map((r,i)=> <Room key={i} path={r} name={r}/>)}
       </div>
      
   )
