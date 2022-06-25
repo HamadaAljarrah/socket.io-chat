@@ -1,4 +1,17 @@
-const staticRooms = ["React", "Java", "C++"];
+const staticRooms = [
+    {
+        name: "React",
+        messages: ["Hi", "Hi there React people!"]
+    },
+    {
+        name: "Java",
+        messages: ["Hi", "Hi there Java people!"]
+    },
+    {
+        name: "C++",
+        messages: ["Hi", "Hi there C++ people!"]
+    },
+];
 const joinedRoons = [];
 
 
@@ -8,6 +21,12 @@ const getActiveRooms = (socketRooms)=>{
     const res = filtered.map(i => i[0]);
     return res;
 }
+
+
+
+module.exports = {staticRooms, getActiveRooms};
+
+
 
 // const fetchRooms = (socketRooms)=>{
 //     const arr = Array.from(socketRooms);
@@ -20,6 +39,3 @@ const getActiveRooms = (socketRooms)=>{
 //     });
 //     rooms = arr2
 // }
-
-
-module.exports = {staticRooms, getActiveRooms};
