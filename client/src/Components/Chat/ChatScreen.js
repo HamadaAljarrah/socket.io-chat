@@ -13,7 +13,7 @@ export default function ChatScreen() {
     <>
       <div className={classes.chatScreen}>
         <ul>
-          {theRoom.messages.map(msg=><li key={msg}>{msg}</li>)}
+          {theRoom.messages.map((msg, i)=><li key={i}>{msg.message}</li>)}
         </ul>
       </div>
     </>

@@ -1,41 +1,41 @@
-const staticRooms = [
+let staticRooms = [
     {
         name: "React",
-        messages: ["Hi", "Hi there React people!"]
+        members: [],
+        messages: [
+                {name: "user1", message: "Hi"},
+                {name: "user2", message: "Hi React People!"}           
+        ]
     },
     {
         name: "Java",
-        messages: ["Hi", "Hi there Java people!"]
+        members: [],
+        messages: [
+            {name: "user1", message: "Hi"},
+            {name: "user2", message: "Hi Java People!"}           
+        ]
     },
     {
         name: "C++",
-        messages: ["Hi", "Hi there C++ people!"]
+        members: [],
+        messages: [
+            {name: "user1", message: "Hi"},
+            {name: "user2", message: "Hi C++ People!"}           
+        ]
     },
 ];
-const joinedRoons = [];
 
 
-const getActiveRooms = (socketRooms)=>{
-    const arr = Array.from(socketRooms);
-    const filtered = arr.filter(room => !room[1].has(room[0]));
-    const res = filtered.map(i => i[0]);
-    return res;
+const getRoomNames = (socketRooms)=>{
+    const toArray = Array.from(socketRooms);
+    const filtered = toArray.filter(room => !room[1].has(room[0]));
+    const roomNames = filtered.map(i => i[0]);
+    return roomNames;
 }
 
 
 
-module.exports = {staticRooms, getActiveRooms};
+module.exports = {staticRooms, getRoomNames};
 
 
 
-// const fetchRooms = (socketRooms)=>{
-//     const arr = Array.from(socketRooms);
-//     const filtered = arr.filter(room => !room[1].has(room[0]));
-//     const arr2 = filtered.map(i => {
-//         return {
-//             name: i[0],
-//             id: i[1]
-//         }
-//     });
-//     rooms = arr2
-// }

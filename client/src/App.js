@@ -10,7 +10,6 @@ import { ChatPage } from './Pages/ChatPage/ChatPage';
 
 export default function App() {
 
-
   return (
     <BrowserRouter>
       <Nav/>
