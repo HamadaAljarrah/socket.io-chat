@@ -18,9 +18,11 @@ app.use(bodyParser.json())
 
 
 
-const {getVisitors, deleteVisitor} = require("./visitors")
-const { staticRooms } = require("./chatRooms")
+const {getVisitors, deleteVisitor} = require("./socket/visitors")
+const { staticRooms } = require("./socket/chatRooms")
+const {addUser, removeUser, users} = require("./socket/users");
 
+console.log(users);
 app.get("/", (req, res)=>{
     res.sendFile(__dirname + '/index.html');
 })
@@ -31,7 +33,11 @@ app.get("/rooms", (req, res)=>{
     res.json(staticRooms)
 })
 app.post("/rooms", (req, res)=>{
-    const room = req.body;
+    const room = {
+        name: req.body.name,
+        members:[],
+        messages:[]
+    };
     staticRooms.push(room);
     res.json(staticRooms)
     //add error handling logic later
@@ -47,8 +53,12 @@ app.put("/rooms/:name", (req, res)=>{
 app.delete("/rooms/:name", (req, res)=>{
     const room  = req.params.name;
     let index;
-    index = staticRooms.forEach((r,i) => r.name === room ? index = i : null);
-    staticRooms.splice(index,1);
+    staticRooms.forEach((r,i) => {
+        if (r.name === room) {
+            index = i
+            staticRooms.splice(index,1);
+        }
+    });
     res.json(staticRooms);
     //add error handling logic later
 
@@ -57,6 +67,7 @@ app.delete("/rooms/:name", (req, res)=>{
 
 // socket
 io.on("connection", (socket)=>{
+
     console.log('a user connected');
     // show live visitors
     socket.on("newVisitor", user=>{
@@ -80,7 +91,13 @@ io.on("connection", (socket)=>{
 
     socket.on("message", ({room , message}) =>{
         socket.to(room).emit("message", message);
+        staticRooms.forEach(r => {
+            if(r.name === room){
+                r.messages.push({user: socket.id, message: message})
+            }
+        })
         console.log(`user with id ${socket.id} has sended message ${message} to room ${room}`);
+        staticRooms.forEach(r => console.log(r.messages))
     });
 
     socket.on("typing",({room})=>{
@@ -104,3 +121,4 @@ io.on("connection", (socket)=>{
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, ()=>console.log(`Listning on port *:${PORT}`));
+

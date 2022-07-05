@@ -2,26 +2,17 @@ let staticRooms = [
     {
         name: "React",
         members: [],
-        messages: [
-                {name: "user1", message: "Hi"},
-                {name: "user2", message: "Hi React People!"}           
-        ]
+        messages: []
     },
     {
         name: "Java",
         members: [],
-        messages: [
-            {name: "user1", message: "Hi"},
-            {name: "user2", message: "Hi Java People!"}           
-        ]
+        messages: []
     },
     {
         name: "C++",
         members: [],
-        messages: [
-            {name: "user1", message: "Hi"},
-            {name: "user2", message: "Hi C++ People!"}           
-        ]
+        messages: []
     },
 ];
 
