@@ -1,5 +1,6 @@
 const {getVisitors, deleteVisitor} = require("./visitors")
 const { staticRooms } = require("./chatRooms")
+const {users, addUser, removeUser} = require("./users");
 
 module.exports = (io, socket) =>{
 
@@ -9,15 +10,24 @@ module.exports = (io, socket) =>{
         io.emit("newVisitor", getVisitors(user, socket.id))
     })
 
+    socket.on("register", nickName=>{
+        addUser(nickName, socket.id);
+        console.log(users);
+
+        
+    })
+
     //handle rooms
     socket.on("joinRoom", room =>{
         socket.join(room);
         console.log(`user with id ${socket.id} has joined room ${room}`);
         //getRoomsToSend(io.sockets.adapter.rooms);
         staticRooms.forEach(r => {
-            if(r.name === room){
-                if (r.members.includes(socket.id)) return;
-                r.members.push(socket.id)
+            if(r.name === room){ 
+                const [user] = users.filter(u => u.id === socket.id)
+                if (!r.members.includes(user))r.members.push(user)
+                
+                
             }
         })
         staticRooms.forEach(r => console.log(r.members))
@@ -28,7 +38,9 @@ module.exports = (io, socket) =>{
         socket.to(room).emit("message", message);
         staticRooms.forEach(r => {
             if(r.name === room){
-                r.messages.push({user: socket.id, message: message})
+                const [user] = users.filter(u=> u.id === socket.id)
+                console.log("user name is : " + user.name);
+                r.messages.push({user: user.name, message: message})
             }
         })
         console.log(`user with id ${socket.id} has sended message ${message} to room ${room}`);
@@ -49,7 +61,9 @@ module.exports = (io, socket) =>{
 
     socket.on("disconnect", ()=>{
         io.emit("deleteVisitor", deleteVisitor(socket.id))
+        removeUser(socket.id)
         console.log('user disconnected');
+        console.log(users);
     })
 
 }

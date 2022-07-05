@@ -1,13 +1,20 @@
-const users = {};
+const socket = require("./socket");
+
+const users = [];
+
+
 
 const addUser = (nickname, socketId) => {
-   users.push({name: nickname, id: socketId})
+   const exist = users.filter(u => u.id === socketId);
+   exist.length === 0 && users.push({name: nickname, id: socketId});
 }
 
-const removeUser = (nickname) => {
-   if(users.hasOwnProperty(nickname)) {
-       delete users[nickname];
-   }
+const removeUser = (socketId) => {
+   let index;
+   users.forEach((u, i)=> {
+      if(u.id === socketId) index = i;
+   });
+   users.splice(index, 1)
 }
 
 module.exports = { users, addUser, removeUser };

@@ -9,7 +9,7 @@ exports.getRooms = async(req, res) => {
 exports.createRoom = async(req, res)=>{
     const room = {
         name: req.body.name,
-        members:[],
+        members: [],
         messages:[]
     };
     staticRooms.push(room);
