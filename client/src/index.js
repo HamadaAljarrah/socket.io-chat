@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { RoomsProvider } from './Context/room-context';
-import {VisitorProvider} from './Context/visitor-context';
-
+import {BrowserRouter as Router} from "react-router-dom" 
+import { RegisterProvider } from './components/RegisterFrom/register-context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <VisitorProvider>
-        <RoomsProvider>
+    <Router>
+        <RegisterProvider>
             <App />
-        </RoomsProvider>
-    </VisitorProvider>
+        </RegisterProvider>
+    </Router>
+    
 );

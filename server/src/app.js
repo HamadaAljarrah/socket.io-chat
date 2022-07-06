@@ -1,16 +1,13 @@
-const express = require("express");
-const http = require("http");
-const socketIO = require("socket.io");
+const app = require("express")()
+const server = require("http").createServer(app);
 const cors = require("cors");
 const bodyParser = require("body-parser")
-
-const app = express();
-const server = http.createServer(app);
-const io = socketIO(server, {
+const io = require("socket.io")(server, {
     cors: {
         origin: "*"
     }
 })
+
 
 //middlewares
 app.use(cors())
@@ -18,14 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 
-
-//room routes
-const roomRoutes  = require("./routes/roomRoutes");
-app.use("/", roomRoutes);
-
-
 //socket
-const socketHandler = require("./socket/socket")
+const socketHandler = require("./socket/index")
 io.on("connection", (socket)=> socketHandler(io, socket) )
 
 
