@@ -8,7 +8,6 @@ const io = require("socket.io")(server, {
     }
 })
 
-
 //middlewares
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))

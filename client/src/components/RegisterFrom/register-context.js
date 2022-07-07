@@ -7,6 +7,11 @@ const registerContext = createContext();
 const RegisterProvider = ({children})=>{
     const [room, setRoom] = useState("Java");
     const [nickname, setNickname] = useState("");
+
+    const [isLoggedin, setIsLoggedin] = useState(false);
+    const login = ()=> setIsLoggedin(true);
+    const logout = ()=> setIsLoggedin(false);
+
     let navigate = useNavigate()
     const submitHandler = (e)=>{
         e.preventDefault();
@@ -16,10 +21,11 @@ const RegisterProvider = ({children})=>{
         }
         socket.emit("joinRoom", data);
         navigate(room)
+        login();
     }
  
     return(
-        <registerContext.Provider value = {{room, setRoom ,nickname, setNickname, submitHandler}}>
+        <registerContext.Provider value = {{room, setRoom, nickname, setNickname, submitHandler, logout, isLoggedin}}>
             {children}
             </registerContext.Provider>
     )

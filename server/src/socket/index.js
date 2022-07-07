@@ -1,6 +1,4 @@
-const {messaging} = require("./events/messaging")
-const {joinRoom} = require("./events/joinRoom")
-const {leaveRoom} = require("./events/leaveRoom")
+let {joinRoom, messaging, leaveRoom, onlineUsers, disconnect} = require("./events")
 
 
 
@@ -9,6 +7,7 @@ module.exports = (io, socket)=>{
     socket.on("joinRoom", (data)=> joinRoom(io, socket, data));
     socket.on("messaging", (data) => messaging(io, socket, data,"messaging"));
     socket.on("leaveRoom", (data) => leaveRoom(io, socket, data));
-    //socket.on("disconnect", (data) => messaging(io, socket, data,"messaging"));
-
+    socket.on("disconnect", () => disconnect(io, socket));
 }
+
+

@@ -2,13 +2,13 @@ import React from 'react'
 import { UseRegister } from './register-context'
 
 export const RegisterFrom = () => {
-    const {room, setRoom, nickname, setNickname, submitHandler} = UseRegister();
+    const {room, setRoom, setNickname, submitHandler} = UseRegister();
 
     return (
         <form onSubmit={submitHandler}>
             <div>
                 <label htmlFor="name">Nickname</label>
-                <input type="text" id='name' autoComplete='off' placeholder='write your name...' onChange={(e)=>setNickname(e.target.value)}/>
+                <input autoFocus type="text" id='name' autoComplete='off' placeholder='write your name...' onChange={(e)=>setNickname(e.target.value)}/>
             </div>
             <div>
                 <label htmlFor="rooms">Choose a room</label>
