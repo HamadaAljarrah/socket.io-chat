@@ -4,13 +4,13 @@ import { socket } from '../../socket';
 import { UseRegister } from '../RegisterFrom/register-context';
 
 export const MessageFrom = () => {
-    const {room, nickname} = UseRegister();
+    const {room, nickname, setdisconnect} = UseRegister();
     const [users, setUsers] = useState([])
     const [messages, setMessages] = useState([]);
     const messageRef = useRef(null);
     const navigate = useNavigate()
     const {logout} = UseRegister()
-
+    setdisconnect(true);
     const sendHandler = (e)=>{
         e.preventDefault()
         const data = {
@@ -37,7 +37,6 @@ export const MessageFrom = () => {
         logout();
         navigate("/");
     }
-    users.map((user,i)=>console.log(user))
     return (
         <form onSubmit={sendHandler}>
             <input autoFocus type="text" placeholder='write a message...' ref={messageRef}/>

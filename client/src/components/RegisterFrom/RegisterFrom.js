@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { UseRegister } from './register-context'
+import classes from "./RegisterForm.module.css"
 
 export const RegisterFrom = () => {
-    const {room, setRoom, setNickname, submitHandler} = UseRegister();
+    const {room, setRoom,disconnect, setdisconnect, setNickname, submitHandler} = UseRegister();
+
+    if(disconnect){
+        window.location.reload(false)
+        setdisconnect(false)
+    }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div>
+        <form className={classes.container} onSubmit={submitHandler}>
+            <h1>Login</h1>
+            <div className={classes.inputContainer}>
                 <label htmlFor="name">Nickname</label>
                 <input autoFocus type="text" id='name' autoComplete='off' placeholder='write your name...' onChange={(e)=>setNickname(e.target.value)}/>
             </div>
-            <div>
+            <div className={classes.inputContainer}>
                 <label htmlFor="rooms">Choose a room</label>
                 <select name="rooms" id="rooms" value={room} onChange={(e)=>setRoom(e.target.value)}>
                     <option value="Java">Java</option>

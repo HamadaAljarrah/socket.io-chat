@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -6,7 +6,7 @@
 }
 
 body{
-    font-family: 'Exo', sans-serif;
+    font-family: 'Inter', sans-serif;
     position: relative;
 
     --mobile: 500px;
@@ -15,9 +15,13 @@ body{
     
     --text-color: #333333;
     --main-color: #2a5ff1;
-    --background-color: #f2f2f2;
+    --main-color-light: hsla(224, 88%, 55%, 0.25);
+    --light-silver: #f2f2f2;
+    --header-color: #081C3A;
+    --outline-form: #CBCBCB;
+    --divider-color: #f2f2f2;
+    --background-color: #ffffff;
     
-
     --font-p-mobile: 0.75rem;
     --font-p-tablet: 1rem;
     --font-p-laptop: 1.25rem;
@@ -26,4 +30,12 @@ body{
     --font-h1-tablet: 1.5rem;
     --font-h1-laptop: 2rem;
 
+}
+
+p{
+    color: var(--text-color);
+}
+
+h1 {
+    color: var(--header-color);
 }

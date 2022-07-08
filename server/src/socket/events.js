@@ -26,7 +26,9 @@ const leaveRoom = (io, socket, data)=>{
 const disconnect = (io, socket)=>{
     let user = users.find(user=> user.id === socket.id)
     users = users.filter(user=> user.id !== socket.id)
-    //console.log(user.name + " has left");
+    io.emit("onlineUsers", users)
+    if(user) io.emit("leaveRoom", {message: `${user.name} has left`})
+    console.log("user has left");
 }
 
 

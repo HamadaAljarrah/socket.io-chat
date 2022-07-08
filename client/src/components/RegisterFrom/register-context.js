@@ -7,7 +7,7 @@ const registerContext = createContext();
 const RegisterProvider = ({children})=>{
     const [room, setRoom] = useState("Java");
     const [nickname, setNickname] = useState("");
-
+    const [disconnect, setdisconnect] = useState(false);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const login = ()=> setIsLoggedin(true);
     const logout = ()=> setIsLoggedin(false);
@@ -25,7 +25,7 @@ const RegisterProvider = ({children})=>{
     }
  
     return(
-        <registerContext.Provider value = {{room, setRoom, nickname, setNickname, submitHandler, logout, isLoggedin}}>
+        <registerContext.Provider value = {{disconnect, setdisconnect, room, setRoom, nickname, setNickname, submitHandler, logout, isLoggedin}}>
             {children}
             </registerContext.Provider>
     )
