@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { UseRegister } from './register-context'
 import classes from "./RegisterForm.module.css"
 
 export const RegisterFrom = () => {
-    const {room, setRoom,disconnect, setdisconnect, setNickname, submitHandler} = UseRegister();
+    const {room, setRoom,disconnect, setDisconnect, setNickname, submitHandler} = UseRegister();
 
     if(disconnect){
         window.location.reload(false)
-        setdisconnect(false)
+        setDisconnect(false)
     }
 
     return (

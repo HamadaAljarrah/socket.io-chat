@@ -1,10 +1,12 @@
 import React from 'react'
-import { MessageFrom } from '../../components/Room/MessageFrom'
+import { Chat } from '../../components/Chat/Chat'
+import { SimpleChat } from '../../components/Chat/SimpleChat'
 import classes from "./ChatPage.module.css"
 export const ChatPage = () => {
   return (
     <div className={classes.container}>
-      <MessageFrom/>
+      <Chat/>
+      {/* <SimpleChat/> */}
     </div>
     
   )

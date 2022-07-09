@@ -19,6 +19,7 @@ const leaveRoom = (io, socket, data)=>{
     socket.leave(data.room);
     users = users.filter(user=> user.id !== socket.id)
     socket.to(data.room).emit('leaveRoom', {message:`${data.name} has left`});
+    io.emit("onlineUsers", users)
     console.log(`user with id ${socket.id} has left room ${data.room}`);
 }
 

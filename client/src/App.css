@@ -38,4 +38,5 @@ p{
 
 h1 {
     color: var(--header-color);
+    font-size: 1.75rem;
 }

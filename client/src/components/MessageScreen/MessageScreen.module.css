@@ -1,0 +1,41 @@
+.container {
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    padding-top: 20px;
+}
+.container::-webkit-scrollbar {
+    display: none; 
+}
+
+
+
+
+
+
+.messageContainer p{
+    color: white;
+    padding: 10px 14px;
+    background-color: var(--main-color);
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+.messageContainer div{
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+}
+.time{
+    color: var(--text-color);
+    font-size: 0.75rem;
+    font-size: 0.65rem;
+}
+.auther{
+    color: var(--text-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+
+}
