@@ -26,6 +26,8 @@ const chatReducer = (state, action)=>{
                 auther: action.payload.nickname,
                 message: action.payload.messageText,
                 room: action.payload.room,
+                id: action.payload.id,
+                joinMessage: false,
                 time: new Date().getHours().toString().padStart(2, '0') + ":" + new Date().getMinutes().toString().padStart(2 ,'0'),
                 date: new Date(Date.now())
             }

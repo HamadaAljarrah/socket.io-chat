@@ -17,7 +17,8 @@ const RegisterProvider = ({children})=>{
         e.preventDefault();
         const data = {
             name: nickname,
-            room: room
+            room: room,
+            id: socket.id,
         }
         socket.emit("joinRoom", data);
         navigate(room)
